@@ -1,0 +1,59 @@
+server:
+  mode: debug
+  healthz: true
+  max-ping-count: 3
+
+# HTTP Configure
+insecure:
+  bind-address: ${IAM_APISERVER_INSECURE_BIND_ADDRESS}
+  bind-port: ${IAM_APISERVER_INSECURE_BIND_PORT}
+
+# HTTPS Configure
+secure:
+  bind-address: ${IAM_APISERVER_SECURE_BIND_ADDRESS}
+  bind-port: ${IAM_APISERVER_SECURE_BIND_PORT}
+  tls:
+    cert-key:
+      cert-file: ${IAM_APISERVER_SECURE_TLS_CERT_KEY_CERT_FILE}
+      private-key-file: ${IAM_APISERVER_SECURE_TLS_CERT_KEY_PRIVATE_KEY_FILE}
+
+# MySQL Configure
+mysql:
+  host: 127.0.0.1:3306
+  username: root
+  password: 11111111
+  database: epay
+  max-idle-connections: 100
+  max-open-connections: 100
+  max-connection-life-time: 10s
+  log-level: 4
+
+# Redis Configure
+redis:
+  host: ${REDIS_HOST}
+  port: ${REDIS_PORT}
+  password: ${REDIS_PASSWORD}
+
+# Log Configure
+log:
+  name: apiserver
+  development: true
+  level: debug
+  format: console
+  enable-color:
+  disable-caller: false
+  disable-stacktrace: false
+  output-paths: /epay-apiserver.log,stdout
+  error-output-paths: ${IAM_LOG_DIR}/iam-apiserver.error.log
+
+# Configure
+feature:
+  enable-metrics: true # metrics
+  profiling: true # pprof
+
+# Notification Configure
+notification:
+  telegram:
+    key:
+    url:
+
